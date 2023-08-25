@@ -46,14 +46,14 @@ runs:
     - name: Check format
       run: mix format --check-formatted
       shell: sh
-      if: ${{ inputs.check-format }}
+      if: inputs.check-format
     
     - name: Check deps audit
       run: mix deps.audit
       shell: sh
-      if: ${{ inputs.check-deps-audit }}
+      if: inputs.check-deps-audit
     
     - name: Check unused deps
       run: mix deps.unlock --check-unused
       shell: sh
-      if: ${{ inputs.check-deps-unused }}
+      if: inputs.check-deps-unused
