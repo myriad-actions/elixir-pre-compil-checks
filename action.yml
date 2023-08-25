@@ -1,5 +1,5 @@
-name: Run Elixir Project
-description: Checks out the code and runs the test
+name: Pre compilation checks
+description: Cheks format, credo, deps.audit and unused deps
 inputs:
   elixir-version:
     required: true
@@ -15,15 +15,15 @@ inputs:
   #################################################################
   check-format:
     description: "Run format check"
-    default: 'true'
+    default: true
     required: false
   check-deps-audit:
     description: "Run deps.audit"
-    default: 'true'
+    default: true
     required: false
   check-deps-unused:
     description: "mix deps.unlock --check-unused"
-    default: 'true'
+    default: true
     required: false
 
 runs:
@@ -38,22 +38,22 @@ runs:
         elixir-version: ${{ inputs.elixir-version }}
         otp-version: ${{ inputs.otp-version }}
         ssh-key: ${{ inputs.ssh-key }}
-        build-deps: 'false'
-        build-app: 'false'
+        build-deps: false
+        build-app: false
       env:
         MIX_ENV: dev
     
     - name: Check format
       run: mix format --check-formatted
       shell: sh
-      if: ${{ inputs.check-format }} == 'true'
+      if: ${{ inputs.check-format }}
     
     - name: Check deps audit
       run: mix deps.audit
       shell: sh
-      if: ${{ inputs.check-deps-audit }} == 'true'
+      if: ${{ inputs.check-deps-audit }}
     
     - name: Check unused deps
       run: mix deps.unlock --check-unused
       shell: sh
-      if: ${{ inputs.check-deps-unused }} == 'true'
+      if: ${{ inputs.check-deps-unused }}
