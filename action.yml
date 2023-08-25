@@ -1,5 +1,5 @@
 name: Pre compilation checks
-description: Cheks format, credo, deps.audit and unused deps
+description: Cheks format, credo, hex.audit and unused deps
 inputs:
   elixir-version:
     required: true
@@ -17,8 +17,8 @@ inputs:
     description: "Run format check"
     default: 'true'
     required: false
-  check-deps-audit:
-    description: "Run deps.audit"
+  check-hex-audit:
+    description: "Run hex.audit"
     default: 'true'
     required: false
   check-deps-unused:
@@ -48,10 +48,10 @@ runs:
       shell: sh
       if: inputs.check-format == 'true'
     
-    - name: Check deps audit
-      run: mix deps.audit
+    - name: Check hex audit
+      run: mix hex.audit
       shell: sh
-      if: inputs.check-deps-audit == 'true'
+      if: inputs.check-hex-audit == 'true'
     
     - name: Check unused deps
       run: mix deps.unlock --check-unused
