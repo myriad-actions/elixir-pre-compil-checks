@@ -15,15 +15,15 @@ inputs:
   #################################################################
   check-format:
     description: "Run format check"
-    default: true
+    default: 'true'
     required: false
   check-deps-audit:
     description: "Run deps.audit"
-    default: true
+    default: 'true'
     required: false
   check-deps-unused:
     description: "mix deps.unlock --check-unused"
-    default: true
+    default: 'true'
     required: false
 
 runs:
@@ -46,14 +46,14 @@ runs:
     - name: Check format
       run: mix format --check-formatted
       shell: sh
-      if: inputs.check-format
+      if: inputs.check-format == 'true'
     
     - name: Check deps audit
       run: mix deps.audit
       shell: sh
-      if: inputs.check-deps-audit
+      if: inputs.check-deps-audit == 'true'
     
     - name: Check unused deps
       run: mix deps.unlock --check-unused
       shell: sh
-      if: inputs.check-deps-unused
+      if: inputs.check-deps-unused == 'true'
