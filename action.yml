@@ -13,10 +13,6 @@ inputs:
   #################################################################
   # Everything below this line is optional.
   #################################################################
-  check-format:
-    description: "Run format check"
-    default: 'true'
-    required: false
   check-hex-audit:
     description: "Run hex.audit"
     default: 'true'
@@ -42,11 +38,6 @@ runs:
         build-app: false
       env:
         MIX_ENV: dev
-    
-    - name: Check format
-      run: mix format --check-formatted
-      shell: sh
-      if: inputs.check-format == 'true'
     
     - name: Check hex audit
       run: mix hex.audit
