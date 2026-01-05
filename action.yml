@@ -15,18 +15,18 @@ inputs:
   #################################################################
   check-hex-audit:
     description: "Run hex.audit"
-    default: 'true'
+    default: "true"
     required: false
   check-deps-unused:
     description: "mix deps.unlock --check-unused"
-    default: 'true'
+    default: "true"
     required: false
 
 runs:
   using: "composite"
   steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Setup Elixir Project
       uses: myriad-actions/elixir-setup@v1
